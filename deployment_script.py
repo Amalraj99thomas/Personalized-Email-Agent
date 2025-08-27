@@ -341,7 +341,7 @@ def main():
     try:
         validate_environment_variables()
     except ValueError as e:
-        with open(".env", "w") as f:
+        with open(".env", "r") as f:
             # Load environment variables from .env file
             for line in f:
                 if '=' in line:
