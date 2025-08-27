@@ -341,13 +341,17 @@ def main():
     try:
         validate_environment_variables()
     except ValueError as e:
-        with open(".env", "r") as f:
-            # Load environment variables from .env file
-            for line in f:
-                if '=' in line:
-                    key, value = line.strip().split('=', 1)
-                    os.environ[key] = value
+        # Load .env only for local dev; open in READ mode
+        from dotenv import load_dotenv, find_dotenv
+        load_dotenv(find_dotenv())  # safely loads .env if it exists
         print("Loaded environment variables from .env file")
+        # with open(".env", "r") as f:
+        #     # Load environment variables from .env file
+        #     for line in f:
+        #         if '=' in line:
+        #             key, value = line.strip().split('=', 1)
+        #             os.environ[key] = value
+        # print("Loaded environment variables from .env file")
     
     # Search and filter results
     relevant_results = []
