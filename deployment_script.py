@@ -373,7 +373,7 @@ def main():
         email_template = f.read()
 
     summariser_prompt = ChatPromptTemplate.from_messages([
-        ("system", load_prompt("main_summariser")),
+        ("system", load_prompt("main_summarizer")),
         ("placeholder", "{messages}"),
     ])
 
